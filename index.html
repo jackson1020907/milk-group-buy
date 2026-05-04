@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小農鮮乳團購站</title>
+    <style>
+        :root {
+            --primary-blue: #0077b6;
+            --milk-white: #f8f9fa;
+        }
+        body { font-family: "Microsoft JhengHei", sans-serif; background-color: var(--milk-white); margin: 0; padding: 0; color: #333; }
+        header { background: white; padding: 20px; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .container { max-width: 800px; margin: 20px auto; padding: 20px; }
+        
+        /* 產品卡片設計 */
+        .product-card {
+            background: white; border-radius: 15px; overflow: hidden; 
+            display: flex; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 30px;
+        }
+        .product-img { width: 40%; background: #e0e0e0; display: flex; align-items: center; justify-content: center; font-size: 50px; }
+        .product-info { padding: 20px; width: 60%; }
+        .price { color: #d90429; font-size: 1.5em; font-weight: bold; }
+        
+        /* 倒數計時樣式 */
+        #timer { background: #ff4d4d; color: white; padding: 10px; text-align: center; border-radius: 5px; font-weight: bold; margin-bottom: 20px; }
+
+        /* 嵌入表單容器 */
+        .form-container { background: white; padding: 10px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        iframe { width: 100%; border: none; min-height: 800px; }
+        
+        footer { text-align: center; padding: 40px; color: #888; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>🥛 在地小農鮮乳團購</h1>
+    <p>每日新鮮配送，給家人最好的營養</p>
+</header>
+
+<div class="container">
+    <!-- 倒數計時 -->
+    <div id="timer">🔥 距離本週結單還剩：<span id="countdown">載入中...</span></div>
+
+    <!-- 產品介紹 -->
+    <div class="product-card">
+        <div class="product-img">🥛</div>
+        <div class="product-info">
+            <h2>全脂純鮮乳 (936ml)</h2>
+            <p>100% 無添加，單一牧場乳源，口感濃郁淳厚。</p>
+            <p class="price">團購價 $85 <span style="text-decoration: line-through; color: #999; font-size: 0.6em;">原價 $110</span></p>
+        </div>
+    </div>
+
+    <!-- Google 表單嵌入 -->
+    <h3 style="text-align:center;">👇 立即填單預約</h3>
+    <div class="form-container">
+        <!-- 請將下方的連結替換成你從 image_651065.png 中複製的連結 -->
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSetvaf-2nF/viewform?embedded=true">載入中…</iframe>
+    </div>
+</div>
+
+<footer>
+    <p>© 2026 牛奶團購小組 | 諮詢請洽 Line ID: milk_group</p>
+</footer>
+
+<script>
+    // 簡單的倒數計時程式
+    function updateTimer() {
+        const endDate = new Date("2026-05-10T23:59:59").getTime(); // 設定你的結單日期
+        const now = new Date().getTime();
+        const t = endDate - now;
+        if (t >= 0) {
+            let days = Math.floor(t / (1000 * 60 * 60 * 24));
+            let hours = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            let mins = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
+            document.getElementById("countdown").innerHTML = days + "天 " + hours + "時 " + mins + "分";
+        } else {
+            document.getElementById("timer").innerHTML = "❌ 本團已結束，敬請期待下一波！";
+        }
+    }
+    setInterval(updateTimer, 1000);
+</script>
+
+</body>
+</html>
